@@ -1,39 +1,49 @@
-# BIOFIT RUNNER — Proyecto independiente de BIOFIT GAME
+# BIOFIT RUNNER — Endless Runner para Android (BIOFIT GAME)
 
-**Estado inicial: 27/11/2026 — preparación documental; todavía NO contiene Trash Dash ni un proyecto Unity.** No existe APK ni integración BLE verificada de RUNNER. `main` se conserva como punto de partida.
+**Estado 28/11/2026: R0.0 bootstrap del repositorio, sin APK validada.** Se mantiene independiente de BIOFIT DASH y del firmware ESP32. El videojuego elegido es **Trash Dash**, de Unity Technologies.
 
-BIOFIT RUNNER es un videojuego de **exergaming endless runner 3D** para Android: desplazamiento por tres carriles, obstáculos, monedas, saltos y deslizamientos, con futura locomoción en el lugar controlada por dos trackers Waveshare ESP32-S3-LCD-1.47B con IMU QMI8658 y BLE. El smartphone ejecutará Unity. Más adelante podrán sumarse muñecas, joystick y modos de visualización adicionales.
+## ¿Dónde está el juego?
 
-## Leer primero
+**Hay dos fuentes distintas que NO deben confundirse:**
 
-1. [Relevo operativo vigente](docs/RELEVO_PROYECTO.md): estado real, fuentes de verdad, próximos pasos y pendientes.
-2. [Método de trabajo](docs/METODO_DE_TRABAJO.md): seis principios heredados/adaptados de BIOFIT DASH, Git seguro, pruebas y aceptación.
-3. [Registro de avances](docs/REGISTRO_AVANCES.md): cambios, evidencias, versiones y limitaciones.
-4. [Recursos y licencias](docs/RECURSOS_Y_LICENCIAS.md): origen de Trash Dash y precauciones antes de publicar archivos.
+1. **Juego recomendado para el desarrollo actual:** [Trash Dash / Endless Runner | Mobile Sample Project en Unity Asset Store](https://assetstore.unity.com/packages/templates/packs/endless-runner-mobile-sample-project-87901), edición 2.0.0 (septiembre 2026), declarada compatible con Unity 6.3 URP. Debe obtenerse desde la cuenta del usuario e importarse **localmente** en Unity. Sus archivos originales no se republican en este repositorio público.
+2. **Fuente histórica oficial enlazada:** [Unity-Technologies/EndlessRunnerSampleGame](https://github.com/Unity-Technologies/EndlessRunnerSampleGame), fijada en el submódulo `ThirdParty/TrashDash-Upstream`. Es **Unity 2019.3**, no la edición 2.0.0. El submódulo es una referencia Git al origen oficial y **no una copia** del contenido.
 
-Referencias independientes:
-- [BIOFIT DASH](https://github.com/LucianoRodriguezUrquiza/BIOFIT-DASH) — videojuego anterior y fuente de metodología; **no copiar el proyecto entero**.
-- [BIOFIT-GAME-Firmware](https://github.com/LucianoRodriguezUrquiza/BIOFIT-GAME-Firmware) — firmware compartido, no se modifica para importar otro juego.
-- [Trash Dash: Unity Asset Store](https://assetstore.unity.com/packages/templates/packs/endless-runner-mobile-sample-project-87901) — base prevista del juego; importación local pendiente.
-- [Trash Dash: código histórico GitHub](https://github.com/Unity-Technologies/EndlessRunnerSampleGame) — referencia antigua; no mezclar automáticamente con el paquete actual.
+**Este repositorio contiene hoy:** metodología, guías de instalación, un adaptador propio de acciones de control, un enlace a la versión histórica oficial y pruebas estáticas del repositorio. **Aún no contiene el juego nuevo importado**, ni se ha probado una APK.
 
-## Plan de hitos (propuestos, no realizados)
+## Guías de entrada
+- [Instalar Trash Dash y preparar un único proyecto local](docs/BASE_TRASH_DASH.md).
+- [Relevo operativo vigente](docs/RELEVO_PROYECTO.md).
+- [Método de trabajo ICC/DIPL/RFD/BRO/FLM/RCA](docs/METODO_DE_TRABAJO.md).
+- [Fuentes, licencias y límites del repositorio público](docs/RECURSOS_Y_LICENCIAS.md).
+- [Registro RCA](docs/REGISTRO_AVANCES.md).
 
-| Hito | Objetivo | Criterio de aceptación |
+## Estructura
+
+```text
+Assets/BIOFIT-RUNNER/Scripts/BiofitRunnerInputBridge.cs   <-- código propio
+ThirdParty/TrashDash-Upstream/                           <-- gitlink a GitHub oficial, versión histórica
+docs/                                                     <-- documentación y licencias
+tests/                                                    <-- controles de repositorio (no compilan Unity)
+.github/workflows/                                        <-- CI estática
+```
+
+## Hoja de ruta
+
+| Versión | Resultado exigido | Estado |
 |---|---|---|
-| R0.1 — Base del juego | Importar edición actual de Trash Dash en proyecto Unity independiente | Consola sin errores bloqueantes y partida funcional en Editor |
-| R0.2 — Android | Generar y ejecutar APK | Menús, carriles, saltos, deslizamientos, monedas y obstáculos funcionan en dispositivo |
-| R0.3 — Entrada BIOFIT | Integrar receptor BLE sin modificar firmware estable | Dos trackers conectados; recepción y acciones registradas, pruebas Android |
-| R0.4 — Locomoción | Investigar STEP/WALK/RUN con los dos tobillos | Ensayos etiquetados y métricas de errores; no confundir candidatos con detección validada |
-| R0.5 — Exergaming | Relacionar movimiento real con velocidad y obstáculos | Prueba física reproducible, sin regresiones de salto o carriles |
+| R0.0 | Repositorio, reglas, referencia upstream, puente neutro de acciones | Propuesta en rama |
+| R0.1 | Importación local de Trash Dash 2.0.0; juego original funciona en Unity 6.3 | Pendiente |
+| R0.2 | APK Android de Trash Dash sin sensores | Pendiente |
+| R0.3 | Conexión BLE y eventos semánticos integrados en el puente | Pendiente |
+| R0.4 | STEP/WALK/RUN basados en dos tobillos, validación con señales físicas | Pendiente |
+| R0.5 | Exergaming con velocidad controlada por movimiento y obstáculos calibrados | Pendiente |
 
-**Versión prevista para comenzar:** Unity 6.3 LTS, si el paquete actual importa correctamente. Registrar la versión exacta del editor y del paquete tras la primera instalación. No asumir compatibilidad sin una prueba.
+## Reglas esenciales
+- `main` se modifica solamente tras validación y autorización; no hacer merge automático.
+- Un único proyecto local Runner. No reinstalar, borrar archivos locales, hacer `reset --hard`, `git clean` ni `push --force`.
+- No modificar sin autorización el firmware ni BLE/saltos estables de DASH.
+- **Protección Git:** `.gitignore` excluye por defecto los assets del paquete de terceros en `Assets/`; solamente se versiona el código propio en `Assets/BIOFIT-RUNNER/`. Verificar `git status` antes de agregar archivos.
+- Las pruebas CI estáticas **no equivalen** a compilación Unity, APK ni validación IMU.
 
-## Reglas rápidas
-
-- Trabajar en **un proyecto local de RUNNER**, separado de DASH. Una vez preparado, actualizar con Git y no reinstalar por cada versión.
-- `main` solo conserva versiones aceptadas. Desarrollar cambios en ramas acotadas; no fusionar ni borrar ramas sin autorización.
-- Agrupar cambios y reducir APK/ensayos físicos repetidos; distinguir CI, Editor, Android y validación IMU.
-- Preservar firmware, BLE y parámetros aceptados de DASH. Reutilizar componentes por adaptación controlada, no por copia masiva.
-- No subir recursos de Asset Store ni terceros al repositorio público sin verificar los derechos de redistribución.
-- Registrar en cada entrega: alcance, archivos modificados, pruebas, resultados y pendientes. No afirmar pruebas no ejecutadas.
+Referencias: [BIOFIT DASH](https://github.com/LucianoRodriguezUrquiza/BIOFIT-DASH) · [Firmware](https://github.com/LucianoRodriguezUrquiza/BIOFIT-GAME-Firmware).

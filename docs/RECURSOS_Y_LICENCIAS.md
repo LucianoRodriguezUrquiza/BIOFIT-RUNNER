@@ -23,3 +23,12 @@
 - Estructura `Assets/` realmente creada en la instalación local, antes de definir exclusiones específicas.
 - Dependencias URP, Input System, Addressables, servicios y compatibilidad Android.
 - Permisos para reutilizar en una distribución futura de BIOFIT GAME cualquier modelo, música, textura o animación.
+
+## Hallazgo específico, 28/11/2026
+
+El archivo **`Assets/EndlessRunner_Third-PartyNotice.txt`** del upstream declara que el asset se rige por **Asset Store EULA**, con excepción de la tipografía **Luckiest Guy** (Apache 2.0). El hecho de que Unity publique el código en GitHub no constituye por sí solo una licencia de redistribución completa.
+
+- Git submodule a revisión `8a11421d45637c1565508c55548b959a1a58ace8` = **puntero a fuente oficial**, no copia de escenas/modelos/texturas.
+- Versión preferida 2.0.0, fecha 21/09/2026, Unity Asset Store EULA y compatibilidad declarada Unity 6.3 URP.
+- Conservar los recursos de terceros en el proyecto local; subir públicamente solo código propio y configuración con permisos verificados.
+- Para repositorio privado con todos los originales: verificar licencia y acceso de colaboradores antes de subir. Requiere aprobación del usuario para cambiar visibilidad.

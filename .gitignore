@@ -136,3 +136,11 @@ crashlytics-build.properties
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# BIOFIT RUNNER — protección preventiva en repositorio PUBLICO.
+# El paquete Trash Dash de Asset Store se importa LOCALMENTE; no subir archivos
+# originales ni redistribuirlos como recursos fuente en este repositorio.
+# Solo los scripts propios de BIOFIT van en Assets/BIOFIT-RUNNER/
+/Assets/*
+!/Assets/BIOFIT-RUNNER/
+!/Assets/BIOFIT-RUNNER.meta

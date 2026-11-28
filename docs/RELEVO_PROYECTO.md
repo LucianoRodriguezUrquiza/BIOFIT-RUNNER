@@ -55,3 +55,12 @@ Tracker izq. + Tracker der. (QMI8658/ESP32-S3)
 
 ## 7. Cómo documentar cada avance
 Registrar en [REGISTRO_AVANCES.md](REGISTRO_AVANCES.md): fecha, rama y SHA, archivos cambiados, comportamiento antes/después, pruebas efectivas, pruebas pendientes, recursos externos y decisión de aceptación. Mantener el método ICC/DIPL/RFD/BRO/FLM/RCA de [METODO_DE_TRABAJO.md](METODO_DE_TRABAJO.md).
+
+## Incorporación inicial de Trash Dash — 28/11/2026
+- Rama de trabajo: `feat/trash-dash-bootstrap` (propuesta sin merge a main).
+- Referencia Git upstream oficial **fijada** a `8a11421d45637c1565508c55548b959a1a58ace8` en `ThirdParty/TrashDash-Upstream`. Es un submódulo (no copia). Unity 2019.3; requiere Git LFS si se descarga el contenido.
+- Versión preferida del usuario: Asset Store **2.0.0**, Unity 6.3 URP; **no disponible en el repositorio GitHub histórico**. Importación desde la cuenta del usuario pendiente y no ejecutada.
+- Código nuevo propio `Assets/BIOFIT-RUNNER/Scripts/BiofitRunnerInputBridge.cs` preparado; necesita cableado al controlador real y prueba en Unity. No incorpora BLE todavía.
+- El repo es público: el paquete completo de Asset Store no se puede republicar aquí por defecto. Política de exclusión `Assets/` aplicada salvo código propio.
+- Próxima acción: **usar el proyecto local Trash Dash que ya esté funcionando** si existe; no reinstalar. Registrar la estructura real y comprobar la consola de Unity.
+- No hay APK, editor ni hardware validados de Runner. No hay cambios en DASH/Firmware.
