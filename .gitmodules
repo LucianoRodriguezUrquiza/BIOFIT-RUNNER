@@ -1,0 +1,3 @@
+[submodule "ThirdParty/TrashDash-Upstream"]
+	path = ThirdParty/TrashDash-Upstream
+	url = https://github.com/Unity-Technologies/EndlessRunnerSampleGame.git

@@ -1,0 +1,16 @@
+name: BIOFIT RUNNER - comprobaciones estaticas (no Unity/APK)
+
+on:
+  push:
+    branches: [main, "feat/**"]
+  pull_request:
+
+jobs:
+  repository-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - name: Inspect repository source and safety constraints
+        run: python3 -m unittest discover -s tests -v
